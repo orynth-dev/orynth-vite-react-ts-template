@@ -1,0 +1,41 @@
+For all designs I ask you to make, have them be beautiful, not cookie cutter. Make webpages that are fully featured and worthy for production.
+
+By default, this template supports JSX syntax with Tailwind CSS classes, React hooks, and Lucide React for icons. Do not install other packages for UI themes, icons, etc unless absolutely necessary or I request them.
+
+Use icons from lucide-react for logos.
+
+Use stock photos from unsplash where appropriate, only valid URLs you know exist. Do not download the images, only link to them in image tags.
+
+## CRITICAL: WalletConnect Integration Requirements
+
+This template MUST ALWAYS include Solana wallet connectivity using Reown AppKit. Every webpage you create should:
+
+1. **Always include the wallet connect button**: Use `<appkit-button />` component in a prominent location (typically in the header or main navigation)
+
+2. **Required imports**: Always import WalletConnect in App.tsx:
+   ```tsx
+   import { createAppKit } from '@reown/appkit/react'
+   import { solana, solanaTestnet, solanaDevnet } from '@reown/appkit/networks'
+   import { metadata, projectId, solanaWeb3JsAdapter } from './config'
+   ```
+
+3. **WalletConnect initialization**: The createAppKit() call must be present in App.tsx before the component definition
+
+4. **Protected files**: Never modify or remove:
+   - src/config/index.tsx (WalletConnect configuration)
+   - .env (contains VITE_PROJECT_ID)
+   - WalletConnect dependencies in package.json
+
+5. **Integration guidelines**:
+   - Place `<appkit-button />` in navigation bars, headers, or as a prominent CTA
+   - Ensure the button is visible and accessible on all pages
+   - ALWAYS wrap the button in a div with high z-index: `<div className="z-[9999] relative"><appkit-button /></div>`
+   - ALWAYS wrap the entire App component in a parent div with massive z-index: `<div className="z-[99999] relative">`
+   - Use Tailwind classes to style the container around the button
+   - The button automatically handles all wallet connection states
+
+6. **Branding**: Always use "Orynth" branding instead of any other name.
+
+REMEMBER: The wallet connection functionality is a core feature of this template and should never be removed or disabled.
+
+The wallet connection is automatically handled - focus on building great user experiences around the connected wallet state.
